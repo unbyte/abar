@@ -1,0 +1,25 @@
+{
+  "name": "abar",
+  "version": "0.1.0",
+  "type": "module",
+  "author": {
+    "name": "unbyte",
+    "url": "https://github.com/unbyte"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/unbyte/abar.git"
+  },
+  "license": "MIT",
+  "keywords": [
+    "cli",
+    "terminal",
+    "console",
+    "loading",
+    "progress"
+  ],
+  "scripts": {
+    "build": "tsup"
+  },
+  "devDependencies": {}
+}
