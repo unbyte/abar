@@ -2,16 +2,7 @@
   "name": "abar",
   "version": "0.1.0",
   "type": "module",
-  "main": "lib/index.cjs",
-  "module": "lib/index.js",
-  "types": "lib/index.d.ts",
-  "exports": {
-    ".": {
-      "types": "./lib/index.d.ts",
-      "import": "./lib/index.js",
-      "require": "./lib/index.cjs"
-    }
-  },
+  "main": "src/index.ts",
   "author": {
     "name": "unbyte",
     "url": "https://github.com/unbyte"
@@ -35,5 +26,17 @@
     "cli-cursor": "^5.0.0",
     "is-interactive": "^2.0.0",
     "stdin-discarder": "^0.3.1"
+  },
+  "publishConfig": {
+    "main": "lib/index.cjs",
+    "module": "lib/index.js",
+    "types": "lib/index.d.ts",
+    "exports": {
+      ".": {
+        "types": "./lib/index.d.ts",
+        "import": "./lib/index.js",
+        "require": "./lib/index.cjs"
+      }
+    }
   }
 }
