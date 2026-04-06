@@ -10,5 +10,5 @@
     "esModuleInterop": true,
     "skipLibCheck": true
   },
-  "include": ["packages/*/src"]
+  "include": ["packages/*/src", "packages/*/scripts"]
 }

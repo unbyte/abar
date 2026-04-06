@@ -1,0 +1,8 @@
+{
+  "private": true,
+  "type": "module",
+  "main": "scripts/go.ts",
+  "dependencies": {
+    "abar": "workspace:*"
+  }
+}

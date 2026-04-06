@@ -3,6 +3,7 @@
   "scripts": {
     "prepare": "lefthook install",
     "build": "turbo run build",
+    "go": "tsx packages/examples",
     "check": "biome check",
     "fix": "biome check --write"
   },
