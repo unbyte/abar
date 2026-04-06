@@ -39,7 +39,13 @@ class Bars {
     })
   }
 
+  /**
+   * Replaces the current configuration entirely (no merging).
+   * Throws if called while running or while any handles are active.
+   */
   configure(options: Partial<Config>): this {
+    if (this.running) throw new Error('cannot call configure() while running — call stop() first')
+    if (this.handles.length > 0) throw new Error('cannot call configure() while handles are active — finish all handles first')
     const stream = options.stream ?? DEFAULT_CONFIG.stream
     this.config = {
       ...DEFAULT_CONFIG,
@@ -51,6 +57,9 @@ class Bars {
     return this
   }
 
+  /**
+   * Starts the bar area rendering.
+   */
   start(): this {
     if (!this.config.enabled || this.running) return this
     this.hook.install()
@@ -71,6 +80,13 @@ class Bars {
     return this
   }
 
+  /**
+   * Stops the bar area rendering.
+   *
+   * Notes:
+   * - Bar area will be cleared.
+   * - Active handles are kept and valid. They will re-appear on the next `.start()`.
+   */
   stop(): this {
     if (!this.running) return this
 
@@ -95,6 +111,14 @@ class Bars {
     return this
   }
 
+  /**
+   * Appends a new bar to the managed set and returns its handle.
+   *
+   * If `text` is omitted, the handle is excluded from the render pipeline
+   * until the first `.update(text)` call.
+   *
+   * If `enabled` is false, returns a no-op handle.
+   */
   add(options: { id?: string; text?: string } = {}) {
     const id = options.id ?? randomUUID()
     if (!this.config.enabled) {
@@ -122,8 +146,13 @@ class Bars {
     return handle
   }
 
+  /** Returns the active handle with the given id, or `undefined` if not found. */
+  get(id: string): BarHandle | undefined {
+    return this.handles.find((h) => h.id === id)
+  }
+
   private flush() {
-    const active = this.handles.filter((h) => h.text !== undefined).sort((a, b) => a.createdAt - b.createdAt)
+    const active = this.handles.filter((h) => h.text !== undefined)
     const entries = this.config.transformers.reduce(
       (entries, transformer) => transformer(entries),
       active.map((h) => ({
