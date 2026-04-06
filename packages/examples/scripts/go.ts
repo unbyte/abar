@@ -1,7 +1,17 @@
-const name = process.argv[2]
-if (!name) {
-  console.error('Usage: go <name>')
+import { readdir } from 'node:fs/promises'
+
+const arg = process.argv[2]
+if (!arg) {
+  console.error('Usage: go <id|name>')
   process.exit(1)
 }
 
-await import(new URL(`../src/${name}.ts`, import.meta.url).href)
+const files = await readdir(new URL('../src', import.meta.url))
+const match = files.find((f) => f.startsWith(arg) && f.endsWith('.ts'))
+
+if (!match) {
+  console.error(`No example found for: ${arg}`)
+  process.exit(1)
+}
+
+await import(new URL(`../src/${match}`, import.meta.url).href)
