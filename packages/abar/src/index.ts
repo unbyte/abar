@@ -6,7 +6,7 @@ import { BarHandle } from './handle'
 import { StreamHook } from './hook'
 import { Renderer } from './renderer'
 import { RenderScheduler } from './scheduler'
-import type { Config, Transformer } from './types'
+import type { BarEntry, Config } from './types'
 
 const DEFAULT_CONFIG: Config = {
   stream: process.stderr,
@@ -132,7 +132,7 @@ class Bars {
         text: h.text!,
         createdAt: h.createdAt,
         updatedAt: h.updatedAt,
-      })),
+      })) as BarEntry[],
     )
 
     this.hook.escape(() => {
@@ -144,5 +144,5 @@ class Bars {
 
 const abar = new Bars()
 export default abar
-export type { BarEntry } from './types'
-export type { BarHandle, Config, Transformer }
+export type * from './types'
+export type { BarHandle }
