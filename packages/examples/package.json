@@ -3,6 +3,6 @@
   "type": "module",
   "main": "scripts/go.ts",
   "dependencies": {
-    "abar": "workspace:*"
+    "@abar/abar": "workspace:*"
   }
 }

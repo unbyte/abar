@@ -1,7 +1,7 @@
 /**
  * 02-multiple-bars: Multiple concurrent bars
  */
-import abar from 'abar'
+import abar from '@abar/abar'
 
 abar.start()
 

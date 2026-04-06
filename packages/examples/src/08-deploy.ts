@@ -6,7 +6,7 @@
  *   line 2 — dim detail/log message
  * A pinned footer shows elapsed time and overall progress.
  */
-import abar from 'abar'
+import abar from '@abar/abar'
 
 // ── ANSI helpers ──────────────────────────────────────────────────────────────
 const dim = (s: string) => `\x1b[2m${s}\x1b[0m`

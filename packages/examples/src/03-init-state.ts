@@ -1,7 +1,7 @@
 /**
  * 03-init-state: Bar created without text, activated later
  */
-import abar from 'abar'
+import abar from '@abar/abar'
 
 abar.start()
 

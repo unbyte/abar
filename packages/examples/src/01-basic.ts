@@ -1,7 +1,7 @@
 /**
  * 01-basic: Single bar, update, finish
  */
-import abar from 'abar'
+import abar from '@abar/abar'
 
 abar.start()
 

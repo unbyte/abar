@@ -7,11 +7,11 @@ Active bars for your terminal. Manage live output lines with handles — update,
 ## Installation
 
 ```sh
-npm install abar
+npm install @abar/abar
 # or
-pnpm add abar
+pnpm add @abar/abar
 # or
-yarn add abar
+yarn add @abar/abar
 ```
 
 ## Examples
@@ -21,7 +21,7 @@ See [`examples/`](./examples) for runnable demos.
 ## Quick Start
 
 ```ts
-import abar from 'abar'
+import abar from '@abar/abar'
 
 abar.start()
 
@@ -40,7 +40,7 @@ setTimeout(() => {
 Multiple bars:
 
 ```ts
-import abar from 'abar'
+import abar from '@abar/abar'
 
 abar.start()
 
@@ -77,7 +77,7 @@ A handle moves through three states:
 Before each frame, abar collects all active bars as `BarEntry[]` and runs them through `config.transformers` in order. Each transformer receives the current entries and returns the list to actually render — you can filter bars, reorder them, rewrite their text, or inject `SyntheticBarEntry` rows (separators, headers, summaries) that aren't backed by a real handle.
 
 ```ts
-import abar from 'abar'
+import abar from '@abar/abar'
 
 abar.configure({
   transformers: [

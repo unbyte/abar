@@ -4,7 +4,7 @@
  * Demonstrates configure() options — writing to stdout instead of stderr,
  * a slower render throttle, and force-disabling when not needed.
  */
-import abar from 'abar'
+import abar from '@abar/abar'
 
 // Write bars to stdout, render at most every 100ms
 abar.configure({

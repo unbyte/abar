@@ -3,7 +3,7 @@
  *
  * Demonstrates SyntheticEntry injection — a separator line not tied to any handle.
  */
-import abar from 'abar'
+import abar from '@abar/abar'
 
 abar.configure({
   transformers: [

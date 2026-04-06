@@ -1,7 +1,7 @@
 /**
  * 04-stop-resume: Stop and resume the bar area without losing handles
  */
-import abar from 'abar'
+import abar from '@abar/abar'
 
 abar.start()
 
