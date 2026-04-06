@@ -60,8 +60,8 @@ class Bars {
       this.stopDiscarder = () => stdinDiscarder.stop()
     }
     this.sigintHandler = () => {
-      this.renderer.clear()
       this.hook.uninstall()
+      this.renderer.clear()
       cliCursor.show(this.config.stream)
       process.exit()
     }
@@ -73,17 +73,24 @@ class Bars {
 
   stop(): this {
     if (!this.running) return this
-    this.renderer.clear()
+
+    this.scheduler.dispose()
     this.hook.uninstall()
+    // clear after hooks are uninstalled, otherwise we need call pause before clear
+    this.renderer.clear()
+
     cliCursor.show(this.config.stream)
+
     if (this.stopDiscarder) {
       this.stopDiscarder()
       this.stopDiscarder = undefined
     }
+
     if (this.sigintHandler) {
       process.removeListener('SIGINT', this.sigintHandler)
       this.sigintHandler = undefined
     }
+
     this.running = false
     return this
   }
@@ -97,7 +104,9 @@ class Bars {
       update: () => this.scheduler.schedule(),
       finish: () => {
         const idx = this.handles.indexOf(handle)
+        // delete the handle before we write to the stream
         if (idx !== -1) this.handles.splice(idx, 1)
+
         if (handle.text !== undefined) {
           this.config.stream.write(`${handle.text}\n`)
           // write will trigger the schedule() internally,
@@ -126,10 +135,10 @@ class Bars {
       })),
     )
 
-    this.hook.pause()
-    this.renderer.clear()
-    this.renderer.render(entries)
-    this.hook.resume()
+    this.hook.escape(() => {
+      this.renderer.clear()
+      this.renderer.render(entries)
+    })
   }
 }
 

@@ -31,16 +31,17 @@ export class StreamHook {
         if (this.paused) {
           return original(chunk, encoding, callback)
         }
-        this.hooks.beforeWrite()
+        // avoid recursive calls
+        this.escape(() => this.hooks.beforeWrite())
         const canContinue = original(chunk, encoding, callback)
         if (canContinue === false) {
           this.drainHandler = () => {
             this.drainHandler = undefined
-            this.hooks.afterWrite()
+            this.escape(() => this.hooks.afterWrite())
           }
           stream.once('drain', this.drainHandler)
         } else {
-          this.hooks.afterWrite()
+          this.escape(() => this.hooks.afterWrite())
         }
         return canContinue
       }) as WriteFn
@@ -64,5 +65,12 @@ export class StreamHook {
 
   resume() {
     this.paused = false
+  }
+
+  escape(fn: () => void) {
+    const original = this.paused
+    this.paused = true
+    fn()
+    this.paused = original
   }
 }
