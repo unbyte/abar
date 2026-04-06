@@ -21,9 +21,9 @@ export class BarHandle {
   /**
    * Permanently removes the bar from the bar area.
    *
-   * - If `text` is omitted or `undefined`, the bar is removed and logged to the stream using the current text.
-   * - If `text` is `null`, the bar is removed without logging to the stream.
-   * - If `text` is provided, the bar is removed and logged to the stream using the provided text.
+   * - If `text` is omitted or `undefined`, the bar is removed and its current text is written to the stream.
+   * - If `text` is `null`, the bar is removed silently without writing anything to the stream.
+   * - If `text` is a string, the bar is removed and that text is written to the stream.
    */
   finish(text?: string | null): void {
     if (this.hooks === undefined) return

@@ -92,7 +92,7 @@ class Bars {
 
     this.scheduler.dispose()
     this.hook.uninstall()
-    // clear after hooks are uninstalled, otherwise we need call pause before clear
+    // clear after hooks are uninstalled, otherwise we need to call pause before clear
     this.renderer.clear()
 
     cliCursor.show(this.config.stream)
@@ -133,7 +133,7 @@ class Bars {
 
         if (handle.text !== undefined) {
           this.config.stream.write(`${handle.text}\n`)
-          // write will trigger the schedule() internally,
+          // write will trigger schedule() internally,
           // so we don't need to schedule again
         } else {
           this.scheduler.schedule()
