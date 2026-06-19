@@ -24,6 +24,7 @@
   ],
   "scripts": {
     "build": "tsup",
+    "prepack": "tsx ./prepack.ts",
     "prepublishOnly": "pnpm build"
   },
   "devDependencies": {

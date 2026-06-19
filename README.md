@@ -16,7 +16,7 @@ yarn add @unbyte/abar
 
 ## Examples
 
-See [`examples/`](./examples) for runnable demos.
+See [examples](./packages/examples/src) for runnable demos.
 
 ## Quick Start
 

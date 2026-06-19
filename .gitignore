@@ -2,4 +2,7 @@ node_modules/
 .turbo/
 lib/
 
+packages/abar/LICENSE
+packages/abar/README.md
+
 .DS_Store
