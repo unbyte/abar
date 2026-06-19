@@ -1,5 +1,5 @@
 {
-  "name": "@abar/abar",
+  "name": "@unbyte/abar",
   "version": "0.1.0",
   "type": "module",
   "main": "src/index.ts",
@@ -23,7 +23,8 @@
     "progress"
   ],
   "scripts": {
-    "build": "tsup"
+    "build": "tsup",
+    "prepublishOnly": "pnpm build"
   },
   "devDependencies": {
     "cli-cursor": "^5.0.0",

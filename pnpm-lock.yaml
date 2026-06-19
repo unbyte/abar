@@ -44,7 +44,7 @@ importers:
 
   packages/examples:
     dependencies:
-      '@abar/abar':
+      '@unbyte/abar':
         specifier: workspace:*
         version: link:../abar
 

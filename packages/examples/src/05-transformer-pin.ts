@@ -3,7 +3,7 @@
  *
  * Demonstrates transformers: reorder entries and inject a synthetic summary.
  */
-import abar from '@abar/abar'
+import abar from '@unbyte/abar'
 
 const STATUS_ID = 'status'
 
